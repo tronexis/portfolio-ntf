@@ -1,3 +1,5 @@
+import styles from './Home.module.css';
+
 import sliceTextureLarge from 'assets/slice-app-large.jpg';
 import sliceTexturePlaceholder from 'assets/slice-app-placeholder.jpg';
 import sliceTexture from 'assets/slice-app.jpg';
@@ -13,22 +15,30 @@ import { Intro } from 'layouts/Home/Intro';
 import { Profile } from 'layouts/Home/Profile';
 import { ProjectSummary } from 'layouts/Home/ProjectSummary';
 import { useEffect, useRef, useState } from 'react';
-import styles from './Home.module.css';
 
 const disciplines = ['Developer', 'Designer'];
 
 export const Home = () => {
-  const [visibleSections, setVisibleSections] = useState([]);
-  const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);
-  const intro = useRef();
-  const projectOne = useRef();
-  const projectTwo = useRef();
-  const projectThree = useRef();
-  const details = useRef();
+  const [visibleSections, setVisibleSections] = useState([]); // State to track which sections are visible
+  const [isScrollIndicatorHidden, setScrollIndicatorHidden] = useState(false); // State to track if scroll indicator should be hidden
+
+  // Refs to each scrollable section
+  const introRef = useRef();
+  const projectOneRef = useRef();
+  const projectTwoRef = useRef();
+  const projectThreeRef = useRef();
+  const detailsRef = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, projectTwo, projectThree, details];
+    const sections = [
+      introRef,
+      projectOneRef,
+      projectTwoRef,
+      projectThreeRef,
+      detailsRef,
+    ];
 
+    // Observer to track section visibility
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach(entry => {
@@ -54,7 +64,7 @@ export const Home = () => {
       sectionObserver.observe(section.current);
     });
 
-    indicatorObserver.observe(intro.current);
+    indicatorObserver.observe(introRef.current);
 
     return () => {
       sectionObserver.disconnect();
@@ -71,14 +81,14 @@ export const Home = () => {
       />
       <Intro
         id="intro"
-        sectionRef={intro}
+        sectionRef={introRef}
         disciplines={disciplines}
-        scrollIndicatorHidden={scrollIndicatorHidden}
+        scrollIndicatorHidden={isScrollIndicatorHidden}
       />
       <ProjectSummary
         id="project-1"
-        sectionRef={projectOne}
-        visible={visibleSections.includes(projectOne.current)}
+        sectionRef={projectOneRef}
+        visible={visibleSections.includes(projectOneRef.current)}
         index={1}
         title="API4UI.io"
         description="Design and development of frontend for a no-ui-code app builder for building business applications fast and easily built using Next.js"
@@ -99,8 +109,8 @@ export const Home = () => {
       <ProjectSummary
         id="project-2"
         alternate
-        sectionRef={projectTwo}
-        visible={visibleSections.includes(projectTwo.current)}
+        sectionRef={projectTwoRef}
+        visible={visibleSections.includes(projectTwoRef.current)}
         index={2}
         title="PromptHelper.io"
         description="Design and development of frontend for a ChatGPT prompt enhancer and analyzer built using Next.js"
@@ -120,8 +130,8 @@ export const Home = () => {
       />
       <ProjectSummary
         id="project-3"
-        sectionRef={projectThree}
-        visible={visibleSections.includes(projectThree.current)}
+        sectionRef={projectThreeRef}
+        visible={visibleSections.includes(projectThreeRef.current)}
         index={3}
         title="Biomedical image collaboration"
         description="Increasing the amount of collaboration in Slice, an app for biomedical imaging"
@@ -139,8 +149,8 @@ export const Home = () => {
         }}
       />
       <Profile
-        sectionRef={details}
-        visible={visibleSections.includes(details.current)}
+        sectionRef={detailsRef}
+        visible={visibleSections.includes(detailsRef.current)}
         id="details"
       />
       <Footer />
