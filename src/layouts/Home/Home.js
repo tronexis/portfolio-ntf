@@ -10,6 +10,12 @@ import sliceTexture from 'assets/slice-app.jpg';
 import sprTextureLarge from 'assets/spr-lesson-builder-dark-large.jpg';
 import sprTexturePlaceholder from 'assets/spr-lesson-builder-dark-placeholder.jpg';
 import sprTexture from 'assets/spr-lesson-builder-dark.jpg';
+import api4uiTexture from 'assets/api4ui.png';
+import api4uiTextureLarge from 'assets/api4ui-large.png';
+import api4uiTexturePlaceholder from 'assets/api4ui-placeholder.png';
+import prompthelperTexture from 'assets/prompthelper.png';
+import prompthelperTextureLarge from 'assets/prompthelper-large.png';
+import prompthelperTexturePlaceholder from 'assets/prompthelper-placeholder.png';
 import { Footer } from 'components/Footer';
 import { Meta } from 'components/Meta';
 import { Intro } from 'layouts/Home/Intro';
@@ -83,22 +89,45 @@ export const Home = () => {
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
-        title="Designing the future of education"
-        description="Designing a platform to help educators build better online courseware"
+        title="API4UI.io"
+        description="Design and development of frontend for a no-ui-code app builder for building business applications fast and easily built using Next.js"
         buttonText="View project"
-        buttonLink="/projects/smart-sparrow"
+        // buttonLink="/projects/smart-sparrow"
+        buttonLink="https://api4ui.io"
         model={{
           type: 'laptop',
-          alt: 'Smart Sparrow lesson builder',
+          alt: 'API4UI.io',
           textures: [
             {
-              srcSet: [sprTexture, sprTextureLarge],
-              placeholder: sprTexturePlaceholder,
+              srcSet: [api4uiTexture, api4uiTextureLarge],
+              placeholder: api4uiTexturePlaceholder,
             },
           ],
         }}
       />
       <ProjectSummary
+        id="project-2"
+        alternate
+        sectionRef={projectTwo}
+        visible={visibleSections.includes(projectTwo.current)}
+        index={2}
+        title="PromptHelper.io"
+        description="Design and development of frontend for a ChatGPT prompt enhancer and analyzer built using Next.js"
+        buttonText="View project"
+        // buttonLink="/projects/smart-sparrow"
+        buttonLink="https://www.prompthelper.io"
+        model={{
+          type: 'laptop',
+          alt: 'PromptHelper.io',
+          textures: [
+            {
+              srcSet: [prompthelperTexture, prompthelperTextureLarge],
+              placeholder: prompthelperTexturePlaceholder,
+            },
+          ],
+        }}
+      />
+      {/* <ProjectSummary
         id="project-2"
         alternate
         sectionRef={projectTwo}
@@ -122,7 +151,7 @@ export const Home = () => {
             },
           ],
         }}
-      />
+      /> */}
       <ProjectSummary
         id="project-3"
         sectionRef={projectThree}
